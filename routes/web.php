@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/entries/create', 'EntryController@create')->name('createEntry');
 Route::post('/entries/savenew', 'EntryController@saveNew')->name('saveNewEntry');
+
+Route::get('/users/{id}', 'UserController@view')->name('user.view');

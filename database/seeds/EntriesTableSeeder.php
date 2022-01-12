@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Entry;
+use App\User;
 
 class EntriesTableSeeder extends Seeder
 {
@@ -12,6 +13,10 @@ class EntriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Entry::class, 100)->create();
+        $users = User::all();
+        $users->each(function ($user) {
+            factory(Entry::class, 10)->create(['user_id' => $user->id]);
+        });
+         
     }
 }

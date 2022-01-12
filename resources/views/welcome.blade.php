@@ -14,19 +14,24 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">&Uacute;ltimas entradas</div>
-
-                    <div class="card-body">
-                        @foreach ($entries as $entry)
-                        <p><b>{{ $entry->title }}</b></p>
+                <h1 class="mb-2">{{__('Entry.Last_Entries')}}</h1>
+                @foreach ($entries as $entry)
+                <div class="card mt-4 mb-4">
+                    <div class="card-header">{{ $entry->title}}</div>
+                    <div class="card-body">                        
                         <p>{{ $entry->content }}</p>
-                        @endforeach
+                    </div>
+                    <div class="card-footer">
+                        {{__('Entry.Author')}}:
+                        <a href="{{ route('user.view', $entry->user_id)}}">
+                        {{ $entry->user->name }}
+                        </a>
                     </div>
                 </div>
+                @endforeach
+                {{ $entries->links()}}
             </div>
         </div>
-    </div>
-    @endsection
+        @endsection
 </body>
 <html>
