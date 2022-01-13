@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Entry;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        return view('home');
+        $entries  = Entry::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(25);      
+        return view('home', compact('entries'));
     }
 }
