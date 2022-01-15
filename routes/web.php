@@ -18,10 +18,12 @@ Route::get('/', 'GuestController@index')->name('root');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/entries/create', 'EntryController@create')->name('entries.new');
 Route::get('/entries/user/{id}', 'GuestController@index')->name('entries.listByUid');
 Route::post('/entries/save', 'EntryController@save')->name('entries.save');
 Route::post('/entries/update/{id}', 'EntryController@update')->name('entries.update');
 Route::get('/entries/view/{id}','GuestController@show')->name('entries.show');
 Route::get('/entries/edit/{id}', 'EntryController@edit')->name('entries.edit');
-Route::get('/users/{id}', 'UserController@view')->name('users.view');
+
+Route::get('/users/{id}', 'UserController@show')->name('users.show');
