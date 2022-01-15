@@ -13,7 +13,7 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <form action="{{ route('entries.update') }}" method="POST">
+                    <form action="{{ route('entries.new') }}" method="POST">
                         @csrf
                         <div class="form-group row">
                             <label for="title">{{__('Entry.Title')}}</label>

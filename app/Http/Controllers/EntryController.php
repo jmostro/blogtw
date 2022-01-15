@@ -11,9 +11,9 @@ class EntryController extends Controller
         $this->middleware('auth');
     }
 
-    public function create()
+    public function new()
     {
-        return view('entries.create');
+        return view('entries.new');
     }
 
     public function save(Request $request)
