@@ -12,8 +12,7 @@ class GuestController extends Controller
         return view('welcome', compact('entries'));
     }
 
-    public function show($id){
-        $entry = Entry::where('id', $id)->first();                
+    public function show(Entry $entry){          
         return view('entries.show', compact('entry'));
     }
 }

@@ -15,8 +15,8 @@
                     @endif                                            
                     {{ $entry->content }}
                     @if ($entry->user_id === auth()->id()) 
-                    <hr>
-                    <a class="btn btn-primary" href="{{ route('entries.edit', $entry->id) }}">{{ __('Entry.Edit') }}</a>
+                    <hr>                   
+                    <a class="btn btn-primary" href="{{ route('entries.edit', $entry->getFullSlug()) }}">Editar</a>                   
                     @endif
                     </div>
                     

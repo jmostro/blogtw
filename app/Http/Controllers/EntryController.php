@@ -18,8 +18,6 @@ class EntryController extends Controller
 
     public function save(Request $request)
     {
-        
-
         //validar campos request
         $validatedData = $request->validate([
             'title' => 'required|min:7|max:255|unique:entries',
@@ -32,37 +30,29 @@ class EntryController extends Controller
         $entry->content = $validatedData['content'];
         $entry->user_id = auth()->id();
         $entry->save();
-        $status = 'Entry.Published_Succesfuly';
+        $status = 'Entrada publicada.';
         return back()->with(compact('status'));
     }
 
-    public function edit($id){
-        $entry = Entry::where('id',$id)->first();        
+    public function edit(Entry $entry){                
         return view ('entries.edit', compact('entry'));
-
     }
 
-    public function update(Request $request, $id){
+    public function update(Entry $entry, Request $request){
         //validar campos request
         $validatedData = $request->validate([        
-        'title' => 'required|min:7|max:255|unique:entries,id,'.$id,
+        'title' => 'required|min:7|max:255|unique:entries,id,'.$entry->id,
         'content' => 'required|min:25|max:3000',
         ]);
-                
-        $entry = Entry::find($id);
-        if ($entry->id == $id) {
-            if ($entry->user_id === auth()->id()) {
-                $entry->title = $validatedData['title'];
-                $entry->content = $validatedData['content'];
-                $entry->save();
-                $status = 'Entry.Updated_Succesfuly';
-                
-            } else {
-                $status ='Entry.Edit_Forbidden';
-            }
-        }else {
-            $status = 'Entry.NotFound';
-        }
-        return redirect()->route('entries.show',$id)->with(compact('status'));
+
+        if ($entry->user_id === auth()->id()) {
+            $entry->title = $validatedData['title'];
+            $entry->content = $validatedData['content'];
+            $entry->save();
+            $status = 'Entrada actualizada.';            
+        } else {
+            $status ='No se permite modificar la entrada.';
+        }        
+        return redirect()->route('entries.show',$entry->getFullSlug())->with(compact('status'));
     }
 }

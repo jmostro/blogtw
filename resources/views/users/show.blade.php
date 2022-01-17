@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -19,7 +18,7 @@
                     <ul>
                         @foreach ($entries as $entry)
                         <li>
-                            <a href="{{ route('entries.show',$entry->id) }}">{{ $entry->title}}</a>
+                            <a href="{{ route('entries.show',$entry->getFullSlug()) }}">{{ $entry->title}}</a>
                         </li>
                         @endforeach
                     </ul>
