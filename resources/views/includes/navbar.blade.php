@@ -15,9 +15,6 @@
          <a class="nav-link" href="{{ route('entries.new') }}">{{__('Navbar.New_Entry')}}</a>
      </li>
      <li class="nav-item">
-        <!--
-        <a class="nav-link" href="{{ route('entries.listByUid', Auth::user()->id) }}">{{__('Navbar.My_Entries')}}</a>
-        -->
         <a class="nav-link" href="{{ route('home') }}">{{__('Navbar.My_Entries')}}</a>
     </li>
      <li class="nav-item dropdown">

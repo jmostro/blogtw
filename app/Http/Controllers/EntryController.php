@@ -34,25 +34,22 @@ class EntryController extends Controller
         return back()->with(compact('status'));
     }
 
-    public function edit(Entry $entry){                
+    public function edit(Entry $entry){     
+        $this->authorize('update', $entry);
         return view ('entries.edit', compact('entry'));
     }
 
     public function update(Entry $entry, Request $request){
+        $this->authorize('update', $entry);
         //validar campos request
         $validatedData = $request->validate([        
         'title' => 'required|min:7|max:255|unique:entries,id,'.$entry->id,
         'content' => 'required|min:25|max:3000',
-        ]);
-
-        if ($entry->user_id === auth()->id()) {
-            $entry->title = $validatedData['title'];
-            $entry->content = $validatedData['content'];
-            $entry->save();
-            $status = 'Entrada actualizada.';            
-        } else {
-            $status ='No se permite modificar la entrada.';
-        }        
+        ]);      
+        $entry->title = $validatedData['title'];
+        $entry->content = $validatedData['content'];
+        $entry->save();
+        $status = 'Entrada actualizada.';                    
         return redirect()->route('entries.show',$entry->getFullSlug())->with(compact('status'));
     }
 }

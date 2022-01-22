@@ -6,7 +6,11 @@
             <h1 class="mb-2">Últimas Entradas</h1>
             @foreach ($entries as $entry)
             <div class="card mt-4 mb-4">
-                <div class="card-header">{{ $entry->title}}</div>
+                <div class="card-header">
+                    <a href="{{ route('entries.show', $entry->getFullSlug()) }}">
+                    {{ $entry->title}}                
+                    </a>
+                </div>
                 <div class="card-body">
                     <p>{{ $entry->content }}</p>
                 </div>
