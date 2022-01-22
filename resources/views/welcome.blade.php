@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-footer">
                     {{__('Entry.Author')}}:
-                    <a href="{{ route('users.show', $entry->user_id)}}">
+                    <a href="{{ route('users.show', $entry->user->username)}}">
                         {{ $entry->user->name }}
                     </a>
                 </div>

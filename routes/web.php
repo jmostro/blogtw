@@ -27,4 +27,4 @@ Route::get('/entries/edit/{entry}', 'EntryController@edit')->name('entries.edit'
 Route::post('/entries/update/{entry}', 'EntryController@update')->name('entries.update');
 
 Route::get('/entries/user/{id}', 'GuestController@index')->name('entries.listByUid');
-Route::get('/users/{id}', 'UserController@show')->name('users.show');
+Route::get('/@{id}', 'UserController@show')->name('users.show');

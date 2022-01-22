@@ -21,6 +21,12 @@
                     <a class="btn btn-primary" href="{{ route('entries.edit', $entry->id) }}">Editar</a>
                     @endcan
                 </div>
+                <div class="card-footer">
+                    {{__('Entry.Author')}}:
+                    <a href="{{ route('users.show', $entry->user->username)}}">
+                        {{ $entry->user->name }}
+                    </a>
+                </div>
 
             </div>
         </div>
