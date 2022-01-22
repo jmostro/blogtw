@@ -13,7 +13,7 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <form action="{{ route('entries.update',$entry->getFullSlug()) }}" method="POST">                    
+                    <form action="{{ route('entries.update',$entry->id) }}" method="POST">                    
                         @csrf
                         <div class="form-group row">
                             <label for="title">Título</label>

@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/entries/new', 'EntryController@new')->name('entries.new');
 
 Route::post('/entries/save', 'EntryController@save')->name('entries.save');
-Route::get('/entries/view/{entry}','GuestController@show')->name('entries.show');
+Route::get('/entries/view/{entrySlug}','GuestController@show')->name('entries.show');
 Route::get('/entries/edit/{entry}', 'EntryController@edit')->name('entries.edit');
 Route::post('/entries/update/{entry}', 'EntryController@update')->name('entries.update');
 

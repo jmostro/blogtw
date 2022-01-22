@@ -35,14 +35,14 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
-        Route::bind('entry', function ($value){
+        Route::bind('entrySlug', function ($value){
             $parts = explode('-', $value);
             $id = end($parts);
+          
             $entry = Entry::findOrFail($id);
             if ($entry->slug."-".$entry->id != $value) {   
                 throw new InvalidEntrySlugException($entry);
             }
-
             return $entry;
         });
     }
